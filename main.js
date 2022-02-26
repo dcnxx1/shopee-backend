@@ -36,4 +36,4 @@ app.get('/gndr/:gender/item_id=:id', async (req,res) => {
     }).catch((err) => err && res.send(err))
 })
 
-app.listen(process.env.PORT)
+app.listen(process.env.PORT || 4040)
