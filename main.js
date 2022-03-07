@@ -39,7 +39,7 @@ app.use('/pdf' ,cors(options),async (req,res, next) => {
 
 
 app.post('/pdf', cors(options), (req,res) => {
-    
+    res.header('Access-Control-Allow-Credentials', 'true')
     res.set('Content-Type', 'application/pdf')
     res.send(req.pdf)
 })
