@@ -7,7 +7,10 @@ const pdf=  require('./pdf/pdf')
 
 
 
-app.use(cors())
+app.use(cors({
+    origin: 'https://shopee-frontend.herokuapp.com',
+    methods: ['GET', 'POST']    
+}))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
