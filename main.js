@@ -6,7 +6,7 @@ const db = require('./db')
 const pdf=  require('./pdf/pdf')
 
 const options = {
-    origin: 'https://shopee-frontend.herokuapp.com',
+    origin: '*',
     methods: ['PUT', 'POST', 'GET', 'DELETE', 'OPTIONS'],
 }
 
