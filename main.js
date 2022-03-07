@@ -22,17 +22,17 @@ app.get('/dames', async (req,res) => {
 })
 
 app.use('/pdf', async (req,res, next) => {
+    res.set("Access-Control-Allow-Origin", "https://shopee-frontend.herokuapp.com")
     const generatePdf = await pdf.make(req.body.arrayBag) 
     req.pdf = generatePdf
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next()
 })
 
 
 
 app.post('/pdf', (req,res) => {
-    // res.set('Content-Type', 'application/octet-stream')
-    // res.set('Content-Disposition', 'attachment: filename="factuur.pdf"')
-    // res.set('Content-Transfer-Encoding', 'binary')
+    
     res.set('Content-Type', 'application/pdf')
     res.send(req.pdf)
 })
