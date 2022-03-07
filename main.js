@@ -6,12 +6,9 @@ const db = require('./db')
 const pdf=  require('./pdf/pdf')
 
 
-const options = {
-    origin: 'https://shopee-frontend.herokuapp.com',
-    methods: ['GET', 'POST', 'OPTIONS']
-}
 
-app.use(cors(options))
+
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
