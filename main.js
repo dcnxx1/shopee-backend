@@ -7,7 +7,7 @@ const pdf=  require('./pdf/pdf')
 
 const options = {
     origin: 'https://shopee-frontend.herokuapp.com',
-    methods: ['GET', 'POST'],
+    methods: ['PUT', 'POST', 'GET', 'DELETE', 'OPTIONS'],
 }
 
 
@@ -27,11 +27,6 @@ app.get('/dames', async (req,res) => {
     
 })
 
-app.use('*', (req,res) => {
-   res.header("Access-Control-Allow-Origin", "https://shopee-frontend.herokuapp.com");
-   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-} )
 
 app.use('/pdf', async (req,res, next) => {
     
