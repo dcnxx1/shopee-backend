@@ -1,15 +1,15 @@
 require('dotenv').config({path: './.env'})
 const express = require('express')
-const cors = require('cors')
 const app = express()
+const cors = require('cors')
 const db = require('./db')
 const pdf=  require('./pdf/pdf')
 
+
 const options = {
     origin: 'https://shopee-frontend.herokuapp.com',
-    methods: ['PUT', 'POST', 'GET', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'OPTIONS']
 }
-
 
 app.use(cors(options))
 app.use(express.json())
@@ -28,9 +28,8 @@ app.get('/dames', async (req,res) => {
 })
 
 
-app.use('/pdf' , cors(options),async (req,res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+app.use('/pdf' , async (req,res, next) => {
+    
     const generatePdf = await pdf.make(req.body.arrayBag) 
     req.pdf = generatePdf 
     next()
@@ -38,7 +37,7 @@ app.use('/pdf' , cors(options),async (req,res, next) => {
 
 
 
-app.post('/pdf', cors(options), (req,res) => {
+app.post('/pdf', (req,res) => {
     res.set('Content-Type', 'application/pdf')
     res.send(req.pdf)
 })
