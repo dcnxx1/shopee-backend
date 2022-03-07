@@ -6,9 +6,8 @@ const db = require('./db')
 const pdf=  require('./pdf/pdf')
 
 const options = {
-    origin: '*',
-    methods: ['GET', 'POST']    ,
-    allowedHeaders: "Access-Control-Allow-Origin"
+    origin: 'https://shopee-frontend.herokuapp.com/',
+    methods: ['GET', 'POST'],
 }
 
 
