@@ -3,10 +3,11 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const db = require('./db')
+const pdf=  require('./pdf/pdf')
 
 app.use(cors())
 app.use(express.json())
-
+app.use(express.urlencoded({extended: true}))
 
 app.get('/', async (req,res) => {
 const response = await db.getAll()
@@ -15,10 +16,28 @@ res.send(response.rows)
 
 app.get('/dames', async (req,res) => {
     const response = await db.getWomen()
-    console.log(response)
+
     res.send(response.rows)
     
 })
+
+app.use('/pdf', async (req,res, next) => {
+    const generatePdf = await pdf.make(req.body.arrayBag) 
+    req.pdf = generatePdf
+    next()
+})
+
+
+
+app.post('/pdf', (req,res) => {
+    // res.set('Content-Type', 'application/octet-stream')
+    // res.set('Content-Disposition', 'attachment: filename="factuur.pdf"')
+    // res.set('Content-Transfer-Encoding', 'binary')
+    res.set('Content-Type', 'application/pdf')
+    res.send(req.pdf)
+})
+
+
 
 
 app.get('/heren', async(req,res) => {
@@ -32,7 +51,7 @@ app.get('/gndr/:gender/item_id=:id', async (req,res) => {
 
     db.getItem(id, gender).then((response) => {
         res.send(response)
-        console.log(response)
+
     }).catch((err) => err && res.send(err))
 })
 
