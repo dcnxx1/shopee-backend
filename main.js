@@ -28,18 +28,17 @@ app.get('/dames', async (req,res) => {
 })
 
 
-app.use('/pdf' ,cors(options),async (req,res, next) => {
-    
+app.use('/pdf' , cors(options),async (req,res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
     const generatePdf = await pdf.make(req.body.arrayBag) 
-    req.pdf = generatePdf
-    
+    req.pdf = generatePdf 
     next()
 })
 
 
 
 app.post('/pdf', cors(options), (req,res) => {
-    res.header('Access-Control-Allow-Credentials', 'true')
     res.set('Content-Type', 'application/pdf')
     res.send(req.pdf)
 })
