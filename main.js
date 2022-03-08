@@ -7,7 +7,7 @@ const pdf=  require('./pdf/pdf')
 
 
 const options ={
-    origin :'https://shopee-frontend.herokuapp.com'
+    origin :'*'
 }
 
 app.use(cors(options))
@@ -32,8 +32,6 @@ app.get('/dames', async (req,res) => {
 app.use('/pdf' , async (req,res, next) => {
     const generatePdf = await pdf.make(req.body.arrayBag) 
     req.pdf = generatePdf 
-    res.header('Access-Control-Allow-Origin', 'https://shopee-frontend.herokuapp.com')
-    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
     next()
 })
 
