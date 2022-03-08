@@ -30,7 +30,7 @@ app.get('/dames', async (req,res) => {
 app.use('/pdf' , async (req,res, next) => {
     const generatePdf = await pdf.make(req.body.arrayBag) 
     req.pdf = generatePdf 
-    res.header('Access-Control-Allow-Origin', 'https://shopee-frontend.herokuapp.com')
+    res.set('Access-Control-Allow-Origin', 'https://shopee-frontend.herokuapp.com')
     next()
 })
 
