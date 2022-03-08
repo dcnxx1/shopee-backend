@@ -29,7 +29,7 @@ app.get('/dames', async (req,res) => {
 })
 
 
-app.use('/pdf' , async (req,res, next) => {
+app.use('/pdf' , cors(options) ,async (req,res, next) => {
     const generatePdf = await pdf.make(req.body.arrayBag) 
     req.pdf = generatePdf 
     next()
@@ -37,7 +37,7 @@ app.use('/pdf' , async (req,res, next) => {
 
 
 
-app.post('/pdf', (req,res) => {
+app.post('/pdf', cors(options), (req,res) => {
     res.set('Content-Type', 'application/pdf')
     res.send(req.pdf)
 })
