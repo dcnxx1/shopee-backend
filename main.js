@@ -7,8 +7,11 @@ const pdf=  require('./pdf/pdf')
 
 
 
-
-app.use(cors())
+app.use((req,res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://shopee-frontend.herokuapp.com");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    next()
+})
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
@@ -37,7 +40,6 @@ app.use('/pdf' , async (req,res, next) => {
 
 app.post('/pdf', (req,res) => {
     res.set('Content-Type', 'application/pdf')
-    res.set('Access-Control-Allow-Origin', 'https://shopee-frontend.herokuapp.com')
     res.send(req.pdf)
 })
 
