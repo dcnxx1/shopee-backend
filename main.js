@@ -39,6 +39,7 @@ app.use('/pdf' , cors(options) ,async (req,res, next) => {
 
 app.post('/pdf', cors(options), (req,res) => {
     res.set('Content-Type', 'application/pdf')
+    console.log(req.pdf)
     res.send(req.pdf)
 })
 
