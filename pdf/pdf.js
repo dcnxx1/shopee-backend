@@ -1,7 +1,7 @@
 const html = require('./style')
 const puppeteer = require('puppeteer')
-
-
+const moment = require('moment')()
+moment.locale('nl')
 
 
 function formatDocument (bag){
@@ -27,8 +27,9 @@ const subTotalWithTax = arr.reduce((sum, add) => sum + add, 0).toFixed(2)
 const taxxed = subtract21(taxPercentage, subTotalWithTax)
 const taxSubtracted = withoutTax(subTotalWithTax, taxxed)
 
-return {subTotalWithTax, withoutTax: taxxed, amountTaxed: taxSubtracted}
+return {subTotalWithTax, withoutTax: taxxed, amountTaxed: taxSubtracted, date: moment.format('LL')}
 }
+
 
 function subtract21(taxPercentage, subTotalWithTax){
 return (subTotalWithTax / 100 * taxPercentage).toFixed(2)

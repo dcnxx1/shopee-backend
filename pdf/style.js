@@ -203,7 +203,7 @@ footer span{
 `
 
 
-module.exports = (templateArray, {subTotalWithTax, withoutTax, amountTaxed})  => `
+module.exports = (templateArray, {subTotalWithTax, withoutTax, amountTaxed, date})  => `
 <html>
 ${style}
 <title>Factuur Shopee</title>
@@ -229,7 +229,7 @@ ${style}
     <div class="order-date">
         <div class="date">
             <span>Factuurdatum</span>
-            <span> 1 maart 2022</span>
+            <span>${date}</span>
         </div>
         <div class="invoice-nmbr">
             <span>Factuurnummer</span>
