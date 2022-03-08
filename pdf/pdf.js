@@ -53,7 +53,7 @@ function calculateTotalPrice(actual_price, amount){
 
 exports.make =  async (bag) => {
   
-  const browser = await puppeteer.launch({headless: false, args: ['--no-sandbox', '--disable-setuid-sandbox'],})
+  const browser = await puppeteer.launch({args: ['--no-sandbox']})
   const page = await browser.newPage()
   await page.setContent(formatDocument(bag, calculateTax))
   const pdfBuffer = await page.pdf({printBackground: true});
