@@ -243,7 +243,6 @@ ${style}
 <div class="order-container">
 <table class="order-table">
 <thead>
-    <span class="hide-bug"></span>
       <tr>
         <td>aantal</td>
         <td>omschrijving</td>
