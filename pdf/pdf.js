@@ -36,7 +36,7 @@ return (subTotalWithTax / 100 * taxPercentage).toFixed(2)
 }
 
 function withoutTax(subTotalWithTax, taxxed){
-return subTotalWithTax - taxxed
+return (subTotalWithTax - taxxed).toFixed(2)
 }
 
 
