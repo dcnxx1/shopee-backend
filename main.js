@@ -6,6 +6,7 @@ const db = require('./db')
 const pdf=  require('./pdf/pdf')
 
 
+
 const options ={
     origin :'*'
 }
@@ -18,6 +19,7 @@ app.use(express.urlencoded({extended: true}))
 
 app.get('/', async (req,res) => {
 const response = await db.getAll()
+
 res.send(response.rows)
 })
 
